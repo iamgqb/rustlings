@@ -4,8 +4,6 @@
 // It won't compile right now! Why?
 // Execute `rustlings hint errors5` for hints!
 
-// I AM NOT DONE
-
 use std::error;
 use std::fmt;
 use std::num::ParseIntError;
@@ -13,9 +11,18 @@ use std::num::ParseIntError;
 // TODO: update the return type of `main()` to make this compile.
 fn main() -> Result<(), ParseIntError> {
     let pretend_user_input = "42";
-    let x: i64 = pretend_user_input.parse()?;
-    println!("output={:?}", PositiveNonzeroInteger::new(x)?);
-    Ok(())
+    let x = pretend_user_input.parse();
+
+    match x {
+        Ok(num) => {
+            println!("output={:?}", PositiveNonzeroInteger::new(num));
+            Ok(())
+        }
+        Err(e) => Err(e)
+    }
+
+    // println!("output={:?}", PositiveNonzeroInteger::new(x));
+    // Ok(())
 }
 
 // Don't change anything below this line.
